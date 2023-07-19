@@ -1,1 +1,6 @@
-
+export * from './lib/+state/news.effects'
+export * from './lib/+state/news.actions'
+export * from './lib/+state/news.facade'
+export * from './lib/+state/news.selectors'
+export * from './lib/+state/news.models'
+export * from './lib/+state/news.reducer'

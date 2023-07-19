@@ -14,9 +14,8 @@ import { appRoutes } from './app.routes';
 import { provideStore, provideState } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import * as fromNews from './../../../../libs/news/news/data-access/src/lib/+state/news.reducer';
-import { NewsEffects } from './../../../../libs/news/news/data-access/src/lib/+state/news.effects';
-import { NewsFacade } from './../../../../libs/news/news/data-access/src/lib/+state/news.facade';
+import * as fromNews from '@news/data-access';
+import { NewsEffects, NewsFacade } from '@news/data-access';
 
 export const appConfig: ApplicationConfig = {
   providers: [
