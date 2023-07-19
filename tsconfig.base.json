@@ -15,9 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@core/http": ["libs/core/http/src/index.ts"],
       "@core/ui/layout": ["libs/news/core/ui/layout/src/index.ts"],
       "@core/utils": ["libs/core/utils/src/index.ts"],
-      "@core/http": ["libs/core/http/src/index.ts"],
       "@news-app/core/http": ["libs/core/http/src/index.ts"],
       "@news-app/news/news/data-access": [
         "libs/news/news/data-access/src/index.ts"
