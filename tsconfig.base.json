@@ -14,7 +14,18 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@core/ui/layout": ["libs/news/core/ui/layout/src/index.ts"],
+      "@core/utils": ["libs/core/utils/src/index.ts"],
+      "@news-app/core/http": ["libs/core/http/src/index.ts"],
+      "@news-app/news/news/data-access": [
+        "libs/news/news/data-access/src/index.ts"
+      ],
+      "@news-app/news/news/feature-news-list": [
+        "libs/news/news/feature-news-list/src/index.ts"
+      ],
+      "@news/home": ["libs/news/home/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
