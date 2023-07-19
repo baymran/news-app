@@ -1,1 +1,2 @@
-export * from './lib/core-http/core-http.component';
+export * from './lib/api.service'
+export * from './lib/api-url.token'
