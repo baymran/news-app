@@ -2,7 +2,10 @@
   "name": "@news-app/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "start": "nx serve news-app -o",
+    "build": "nx build news-app"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~16.1.0",

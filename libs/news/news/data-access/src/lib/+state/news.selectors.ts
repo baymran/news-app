@@ -7,9 +7,9 @@ export const selectNewsState =
 
 const { selectAll, selectEntities } = newsAdapter.getSelectors();
 
-export const selectNewsLoaded = createSelector(
+export const selectNewsStatus = createSelector(
   selectNewsState,
-  (state: NewsState) => state.loaded
+  (state: NewsState) => state.status
 );
 
 export const selectNewsError = createSelector(

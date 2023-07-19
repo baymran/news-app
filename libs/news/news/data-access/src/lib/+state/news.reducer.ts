@@ -2,14 +2,15 @@ import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on, Action } from '@ngrx/store';
 
 import * as NewsActions from './news.actions';
-import { NewsEntity } from './news.models';
+import {LoadingStatus, NewsEntity} from "@core/data-access";
+import {NewsErrors} from "../../../../feature-news-list/src/lib/news-list/news-list-view-model";
 
 export const NEWS_FEATURE_KEY = 'news';
 
 export interface NewsState extends EntityState<NewsEntity> {
   selectedId?: string | number; // which News record has been selected
-  loaded: boolean; // has the News list been loaded
-  error?: string | null; // last known error (if any)
+  status: LoadingStatus; // has the News list been loaded
+  error?: NewsErrors | null; // last known error (if any)
 }
 
 export interface NewsPartialState {
@@ -21,18 +22,18 @@ export const newsAdapter: EntityAdapter<NewsEntity> =
 
 export const initialNewsState: NewsState = newsAdapter.getInitialState({
   // set initial required properties
-  loaded: false,
+  status: 'init',
+  error: null
 });
 
 const reducer = createReducer(
   initialNewsState,
   on(NewsActions.initNews, (state) => ({
     ...state,
-    loaded: false,
-    error: null,
+    status: 'loading' as const
   })),
-  on(NewsActions.loadNewsSuccess, (state, { news }) =>
-    newsAdapter.setAll(news, { ...state, loaded: true })
+  on(NewsActions.loadNewsSuccess, (state, {news}) =>
+    newsAdapter.setAll(news, {...state, status: 'loaded' as const})
   ),
   on(NewsActions.loadNewsFailure, (state, { error }) => ({ ...state, error }))
 );

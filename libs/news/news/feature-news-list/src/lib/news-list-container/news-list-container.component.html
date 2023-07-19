@@ -1,1 +1,4 @@
-<p>news-list-container works!</p>
+<ng-container *ngIf="news$ | async as news">
+  <news-list [vm]="news">
+  </news-list>
+</ng-container>

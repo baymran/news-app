@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {NewsListVM} from "./news-list-view-model";
 
 @Component({
   selector: 'news-list',
@@ -9,4 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./news-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NewsListComponent {}
+export class NewsListComponent {
+  @Input({required: true})
+  vm!: NewsListVM;
+}

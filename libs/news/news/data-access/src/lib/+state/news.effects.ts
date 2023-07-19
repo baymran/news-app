@@ -1,21 +1,32 @@
 import { Injectable, inject } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { switchMap, catchError, of } from 'rxjs';
+import {switchMap, catchError, of, map} from 'rxjs';
 import * as NewsActions from './news.actions';
-import * as NewsFeature from './news.reducer';
+import {ApiService} from "@core/http";
+import {newsDTOAdapter, NewsEntity, NewsItemDTO} from "@core/data-access";
 
-@Injectable()
-export class NewsEffects {
-  private actions$ = inject(Actions);
+export const newsEffects = createEffect(
+  () => {
+    const actions$ = inject(Actions);
+    const apiService = inject(ApiService);
 
-  init$ = createEffect(() =>
-    this.actions$.pipe(
+    actions$.subscribe(console.log)
+
+    return actions$.pipe(
       ofType(NewsActions.initNews),
-      switchMap(() => of(NewsActions.loadNewsSuccess({ news: [] }))),
-      catchError((error) => {
-        console.error('Error', error);
-        return of(NewsActions.loadNewsFailure({ error }));
-      })
+      switchMap(
+        () => apiService.get<{ news: NewsItemDTO[] }>('/1/10').pipe(
+          map(
+            ({news}) => NewsActions.loadNewsSuccess({
+              news: news.map(item => newsDTOAdapter.DTOtoEntity(item))
+            })
+          ),
+          catchError((error) => {
+            console.error('Error', error);
+            return of(NewsActions.loadNewsFailure({ error }));
+          })
+        )
+      ),
     )
-  );
-}
+  }, {functional: true}
+)

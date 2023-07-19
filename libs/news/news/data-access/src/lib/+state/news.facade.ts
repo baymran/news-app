@@ -13,7 +13,7 @@ export class NewsFacade {
    * Combine pieces of state using createSelector,
    * and expose them as observables through the facade.
    */
-  loaded$ = this.store.pipe(select(NewsSelectors.selectNewsLoaded));
+  loaded$ = this.store.pipe(select(NewsSelectors.selectNewsStatus));
   allNews$ = this.store.pipe(select(NewsSelectors.selectAllNews));
   selectedNews$ = this.store.pipe(select(NewsSelectors.selectEntity));
 

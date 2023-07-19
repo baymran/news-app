@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { NewsEntity } from './news.models';
+import {NewsEntity} from "@core/data-access";
+
 
 export const initNews = createAction('[News Page] Init');
 
