@@ -6,8 +6,8 @@ export type NewsItemDTO = DeepReadonly<{
   description: string;
   publishedDate: Date;
   url: string;
-  fullURL: string;
-  titleImageURL: string;
+  fullUrl: string;
+  titleImageUrl: string;
   categoryType: string;
 }>
 

@@ -16,7 +16,8 @@ export class NewsFacade {
   loaded$ = this.store.pipe(select(NewsSelectors.selectNewsStatus));
   allNews$ = this.store.pipe(select(NewsSelectors.selectAllNews));
   selectedNews$ = this.store.pipe(select(NewsSelectors.selectEntity));
-
+  public readonly status$ = this.store.pipe(select(NewsSelectors.selectNewsStatus))
+  // public readonly status$ = this.store.pipe(select(UsersSelectors.selectUsersStatus));
   /**
    * Use the initialization action to perform one
    * or more tasks in your Effects.

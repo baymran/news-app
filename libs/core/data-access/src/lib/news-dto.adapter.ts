@@ -7,7 +7,7 @@ type NewsDtoAdapter = {
 
 export const newsDTOAdapter: NewsDtoAdapter = {
   DTOtoEntity(dto: NewsItemDTO): NewsEntity {
-    const {fullURL, ...otherFields} = dto
+    const {fullUrl, ...otherFields} = dto
     return {
       ...otherFields
     }
@@ -15,7 +15,7 @@ export const newsDTOAdapter: NewsDtoAdapter = {
   entityToDTO(entity: NewsEntity): NewsItemDTO {
     return {
       ...entity,
-      fullURL: ''
+      fullUrl: ''
     }
   }
 }
