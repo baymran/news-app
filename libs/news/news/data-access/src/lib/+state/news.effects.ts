@@ -15,7 +15,7 @@ export const newsEffects = createEffect(
     return actions$.pipe(
       ofType(NewsActions.initNews),
       switchMap(
-        () => apiService.get<{ news: NewsItemDTO[] }>('/1/10').pipe(
+        () => apiService.get<{ news: NewsItemDTO[], totalCount: number }>('/1/10').pipe(
           map(
             ({news}) => NewsActions.loadNewsSuccess({
               news: news.map(item => newsDTOAdapter.DTOtoEntity(item))

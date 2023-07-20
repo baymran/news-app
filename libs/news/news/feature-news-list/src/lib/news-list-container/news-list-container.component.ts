@@ -1,11 +1,9 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {NewsFacade} from "@news/data-access";
-import {map} from "rxjs";
-import {NewsEntity} from "@core/data-access";
-import {NewsListVM} from "../news-list/news-list-view-model";
 import {NewsListComponent} from "../news-list/news-list.component";
 import {NewsListContainerStore} from "./news-list-container.store";
+import {ComponentStore} from "@ngrx/component-store";
 
 @Component({
   selector: 'news-list-container',
@@ -22,6 +20,6 @@ export class NewsListContainerComponent {
   public readonly news$ = this.componentStore.news$
 
   constructor() {
-    this.newsFacade.init()
+    // this.newsFacade.init()
   }
 }

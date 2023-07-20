@@ -33,7 +33,7 @@ export const appConfig: ApplicationConfig = {
     }),
     provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
     provideHttpClient(),
-    importProvidersFrom(),
+    importProvidersFrom(NewsFacade),
     {
       provide: API_URL,
       useValue: environment.api_url,
