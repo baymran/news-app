@@ -1,8 +1,5 @@
-<!--<ng-container *ngIf="news$ | ngrxPush as news">-->
-<!--  <news-list [vm]="news">-->
-<!--  </news-list>-->
-<!--</ng-container>-->
 <ng-container *ngrxLet="{news: news$, status: status$} as vm">
   <news-list [vm]="vm">
   </news-list>
 </ng-container>
+<create-news-button></create-news-button>

@@ -1,1 +1,12 @@
-<p>create-news-button works!</p>
+<div class="fixed bottom-4 right-4">
+  <button
+    (click)="openAddNewsDialog()"
+    class="relative flex items-center justify-center bg-gradient-to-br from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white p-4 rounded-full shadow-lg focus:outline-none overflow-hidden">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-6 h-6">
+      <path fill-rule="evenodd"
+            d="M10 2a1 1 0 011 1v6h6a1 1 0 110 2h-6v6a1 1 0 11-2 0v-6H3a1 1 0 110-2h6V3a1 1 0 011-1z"
+            clip-rule="evenodd"/>
+    </svg>
+    <span class="absolute inset-0 bg-black opacity-0 hover:opacity-30 transition-opacity rounded-full"></span>
+  </button>
+</div>

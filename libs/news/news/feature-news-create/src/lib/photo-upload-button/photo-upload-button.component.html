@@ -1,0 +1,6 @@
+<label for="fileInput" class="bg-purple-800 text-white py-2 px-4 rounded cursor-pointer
+  transition-colors duration-150 hover:bg-purple-700 active:bg-purple-900">
+  <span>Загрузить фотографию</span>
+</label>
+<input type="file" id="fileInput" (change)="onFileSelected($event)" accept="image/*" class="hidden">
+<ng-content></ng-content>
