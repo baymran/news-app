@@ -15,10 +15,13 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@core/data-access": ["libs/core/data-access/src/index.ts"],
       "@core/http": ["libs/core/http/src/index.ts"],
       "@core/ui/layout": ["libs/news/core/ui/layout/src/index.ts"],
       "@core/utils": ["libs/core/utils/src/index.ts"],
-      "@core/data-access": ["libs/core/data-access/src/index.ts"],
+      "@news-app/news/news/feature-news-create": [
+        "libs/news/news/feature-news-create/src/index.ts"
+      ],
       "@news/data-access": ["libs/news/news/data-access/src/index.ts"],
       "@news/feature-news-list": [
         "libs/news/news/feature-news-list/src/index.ts"
