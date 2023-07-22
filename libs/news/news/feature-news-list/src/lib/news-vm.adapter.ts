@@ -1,4 +1,4 @@
-import {NewsItemVM} from "../../../news-vm";
+import {NewsItemVM} from "./news-item/news-item.vm";
 import {NewsEntity} from "@core/data-access";
 
 type newsVMAdapter = {

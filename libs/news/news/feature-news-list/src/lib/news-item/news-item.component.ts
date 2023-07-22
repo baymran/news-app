@@ -1,12 +1,18 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from '@angular/core';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
+import {NewsItemVM} from "./news-item.vm";
+import {MatCardModule} from "@angular/material/card";
 
 @Component({
-  selector: 'news-app-news-item',
+  selector: 'news-item',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatCardModule, NgOptimizedImage],
   templateUrl: './news-item.component.html',
   styleUrls: ['./news-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.Emulated
 })
-export class NewsItemComponent {}
+export class NewsItemComponent {
+  @Input({required: true})
+  newsItem!: NewsItemVM
+}

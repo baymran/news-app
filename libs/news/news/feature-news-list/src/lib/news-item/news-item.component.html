@@ -1,1 +1,11 @@
-<p>news-item works!</p>
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+  <img [src]="newsItem.titleImageUrl" alt="{{newsItem.description}}" class="w-full h-48 object-cover transition duration-300 cursor-pointer hover:opacity-80">
+  <div class="p-6">
+    <h2 class="text-xl font-semibold mb-2">{{newsItem.title}}</h2>
+    <p class="text-gray-600 mb-4">{{newsItem.description}}</p>
+    <a href="#"
+       class="inline-block bg-blue-500 text-white font-extralight py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition duration-300">
+      Подробнее
+    </a>
+  </div>
+</div>

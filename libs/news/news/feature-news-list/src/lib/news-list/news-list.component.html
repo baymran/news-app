@@ -1,4 +1,15 @@
-<p>news-list works!</p>
-<ng-container>
-  {{vm | json}}
+<ng-container *ngIf="vm.status === 'loading'; else loadingResult">
+  <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
 </ng-container>
+
+<ng-template #loadingResult>
+  <div class="bg-gray-100 py-8">
+    <div class="max-w-4xl mx-auto">
+      <div class="grid gap-8">
+        <ng-container *ngFor="let item of vm.news">
+          <news-item [newsItem]="item" />
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</ng-template>

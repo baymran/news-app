@@ -27,6 +27,11 @@
           "@angular/material/prebuilt-themes/purple-green.css",
           "apps/news-app/src/styles.scss"
         ],
+        "stylePreprocessorOptions": {
+          "includePaths": [
+            "tailwind.config.js"
+          ]
+        },
         "scripts": []
       },
       "configurations": {
