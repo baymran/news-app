@@ -33,11 +33,14 @@ const reducer = createReducer(
     status: 'loading' as const
   })),
   on(NewsActions.loadNewsSuccess, (state, {news}) =>
-    newsAdapter.setAll(news, {...state, status: 'loaded' as const})
+    newsAdapter.addMany(news, {...state, status: 'loaded' as const})
   ),
   on(NewsActions.loadNewsFailure, (state, { error }) => ({ ...state, error })),
   on(NewsActions.addNewsActions.addNewsSuccess, (state, newEntity) =>
-  newsAdapter.addOne(newEntity, {...state})
+    newsAdapter.addOne(newEntity, {...state})
+  ),
+  on(NewsActions.localStorageNews.setStateFromLocalStorage, (state, {news}) =>
+    newsAdapter.addMany(news, state)
   )
 );
 

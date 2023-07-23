@@ -22,7 +22,7 @@ export class CreateNewsDialogComponent {
     title: ['', Validators.required],
     description: ['', [Validators.required]],
   });
-  public selectedFile: File | null = null;
+  public base64image: string | null = null;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { name: string, email: string, photo: File },
@@ -36,24 +36,17 @@ export class CreateNewsDialogComponent {
   public onConfirm(): void {
     if (this.formGroup.valid) {
       const {title, description} = this.formGroup.value
-      const titleImageUrl = this.getObjectUrl(this.selectedFile)
+      const titleImageUrl = this.base64image
       const formData = {title, description, titleImageUrl}
       this.dialogRef.close(formData);
     }
   }
 
-  public onPhotoSelected(file: File | null): void {
-    this.selectedFile = file;
+  public onPhotoSelected(file: string | null): void {
+    this.base64image = file;
   }
 
   public onPhotoRemoved() {
-    this.selectedFile = null
-  }
-
-  public getObjectUrl(file: File | null): string  {
-    if(!file) {
-      return ''
-    }
-    return URL.createObjectURL(file)
+    this.base64image = null
   }
 }

@@ -11,9 +11,9 @@
         <mat-error>Укажите описание новости</mat-error>
       </mat-form-field>
       <photo-upload-button class="row-start-5" (photoSelected)="onPhotoSelected($event)">
-        <ng-container *ngIf="selectedFile">
+        <ng-container *ngIf="base64image">
           <div class="flex items-center mt-3">
-          <p class="text-xs mr-2 align-middle">Выбранный файл: {{ selectedFile.name }}</p>
+          <p class="text-xs mr-2 align-middle">Удалить выбранный файл</p>
           <button (click)="onPhotoRemoved()" class="rounded-full focus:outline-none">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-600" viewBox="0 0 20 20"
                  fill="currentColor">
@@ -24,7 +24,7 @@
           </div>
         </ng-container>
       </photo-upload-button>
-      <img *ngIf="selectedFile" [src]="getObjectUrl(selectedFile)" alt="Выбранное фото">
+      <img *ngIf="base64image" [src]="base64image" alt="Выбранное фото">
     </div>
   </form>
 </div>

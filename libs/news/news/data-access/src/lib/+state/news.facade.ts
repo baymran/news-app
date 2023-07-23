@@ -24,6 +24,7 @@ export class NewsFacade {
 
   public init() {
     this.store.dispatch(NewsActions.initNews());
+    this.store.dispatch(NewsActions.localStorageNews.getItemsFromLocalStorage())
   }
 
   public addNewsItem(userData: NewsItemVM) {
