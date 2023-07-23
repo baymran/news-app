@@ -4,7 +4,9 @@
     <h2 class="text-xl font-semibold mb-2">{{newsItem.title}}</h2>
     <p class="text-gray-600 mb-4">{{newsItem.description}}</p>
     <p class="text-gray-300 text-xs mb-2">
-      Добавлено: {{ formatDate(newsItem.publishedDate.toString()) }}
+      Добавлено: {{ formatDate(
+      newsItem.publishedDate.toString(),
+      {year: 'numeric', month: 'long', day: 'numeric'}) }}
     </p>
     <button type="button"
        class="inline-block bg-blue-500 text-white font-extralight py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition duration-300">

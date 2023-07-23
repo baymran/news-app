@@ -52,9 +52,8 @@ export const addFromLocalStorage = createEffect(
       ofType(NewsActions.localStorageNews.getItemsFromLocalStorage),
       switchMap(() => {
         const keys: string[] = getNewsKeysFromLocalStorage();
-        const entities$ = getObjectsWithKeys(keys); // Получение Observable<NewsEntity[]>
+        const entities$ = getObjectsWithKeys(keys);
 
-        // Преобразование Observable<NewsEntity[]> в Observable<NewsActions.SetStateFromLocalStorage>
         return entities$.pipe(
           map((entities) => NewsActions.localStorageNews.setStateFromLocalStorage({ news: entities }))
         );

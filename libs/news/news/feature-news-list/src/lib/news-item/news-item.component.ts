@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from '@ang
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {NewsItemVM} from "./news-item.vm";
 import {MatCardModule} from "@angular/material/card";
+import {formatDate} from "@core/utils";
 
 @Component({
   selector: 'news-item',
@@ -13,11 +14,6 @@ import {MatCardModule} from "@angular/material/card";
   encapsulation: ViewEncapsulation.Emulated
 })
 export class NewsItemComponent {
-  @Input({required: true})
-  newsItem!: NewsItemVM
-
-  public formatDate(date: Date | string): string {
-    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-    return new Date(date).toLocaleDateString('ru-RU', options);
-  }
+  @Input({required: true}) newsItem!: NewsItemVM
+  protected readonly formatDate = formatDate;
 }
