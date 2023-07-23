@@ -18,7 +18,7 @@ import {Subject, throttleTime} from "rxjs";
 })
 export class NewsListComponent {
   @Input({required: true}) vm!: NewsListVM;
-  private readonly scrollThreshold: number = 30;
+  private readonly scrollThreshold: number = 100;
   private lastScrollY: number = 0;
   private scrollEndEvent = new Subject<void>();
   @Output() throttledEvent= this.scrollEndEvent.pipe(throttleTime(300));
