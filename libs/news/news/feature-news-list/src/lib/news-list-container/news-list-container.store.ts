@@ -2,7 +2,7 @@ import {ComponentStore} from "@ngrx/component-store";
 import {inject, Injectable} from "@angular/core";
 import {LoadingStatus, NewsEntity} from "@core/data-access";
 import {DeepReadonly} from "@core/utils";
-import {NewsFacade} from "@news/data-access";
+import {NewsFacade, selectCurrentPage} from "@news/data-access";
 import {tap} from "rxjs";
 import {newsVMAdapter} from "@news/feature-news-list";
 import {NewsListVM} from "../news-list/news-list-view-model";
@@ -24,8 +24,8 @@ export class NewsListContainerStore extends ComponentStore<NewsListState> {
     super(initialState);
     this.newsFacade.init();
     this.setNewsFromGlobalToLocalStore()
-    console.log('COMPONENT STORE!!!!!!')
   }
+
   private setNewsFromGlobalToLocalStore(): void {
     this.effect(
       () => this.newsFacade.allNews$.pipe(
@@ -40,5 +40,9 @@ export class NewsListContainerStore extends ComponentStore<NewsListState> {
         item => newsVMAdapter.entityToVM(item)
       )
     })
+  }
+
+  public loadMoreNewsByScroll() {
+    this.newsFacade.loadNextPage()
   }
 }

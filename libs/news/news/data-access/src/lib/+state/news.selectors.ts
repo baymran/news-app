@@ -37,3 +37,8 @@ export const selectEntity = createSelector(
   selectSelectedId,
   (entities, selectedId) => (selectedId ? entities[selectedId] : undefined)
 );
+
+export const selectCurrentPage = createSelector(
+  selectNewsState,
+  ({page}) => page
+)

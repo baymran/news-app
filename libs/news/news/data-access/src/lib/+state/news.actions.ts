@@ -32,3 +32,12 @@ export const addNewsActions = createActionGroup({
     'Add News Failure': props<{error: Error}>()
   }
 })
+
+export const loadMoreNews = createActionGroup({
+  source: 'News/Page',
+  events: {
+    'Load More': props<{page: number}>(),
+    'Load More Success': props<{ news: NewsEntity[], page: number }>(),
+    'Load More Failure': props<{ error: any }>()
+  }
+})

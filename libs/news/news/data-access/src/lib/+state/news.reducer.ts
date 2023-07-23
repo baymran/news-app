@@ -10,6 +10,7 @@ export const NEWS_FEATURE_KEY = 'news';
 export interface NewsState extends EntityState<NewsEntity> {
   selectedId?: string | number; // which News record has been selected
   status: LoadingStatus; // has the News list been loaded
+  page: number;
   error?: NewsErrors | null; // last known error (if any)
 }
 
@@ -23,6 +24,7 @@ export const newsAdapter: EntityAdapter<NewsEntity> =
 export const initialNewsState: NewsState = newsAdapter.getInitialState({
   // set initial required properties
   status: 'init',
+  page: 0,
   error: null
 });
 
@@ -33,15 +35,17 @@ const reducer = createReducer(
     status: 'loading' as const
   })),
   on(NewsActions.loadNewsSuccess, (state, {news}) =>
-    newsAdapter.addMany(news, {...state, status: 'loaded' as const})
+    newsAdapter.addMany(news, {...state, status: 'loaded' as const, page: 1})
   ),
-  on(NewsActions.loadNewsFailure, (state, { error }) => ({ ...state, error })),
+  on(NewsActions.loadNewsFailure, (state, { error }) => ({ ...state, error, status: 'error' as const })),
   on(NewsActions.addNewsActions.addNewsSuccess, (state, newEntity) =>
     newsAdapter.addOne(newEntity, {...state})
   ),
   on(NewsActions.localStorageNews.setStateFromLocalStorage, (state, {news}) =>
     newsAdapter.addMany(news, state)
-  )
+  ),
+  on(NewsActions.loadMoreNews.loadMoreSuccess, (state, {news, page}) =>
+  newsAdapter.addMany(news, {...state, status: 'loaded' as const, page}))
 );
 
 export function newsReducer(state: NewsState | undefined, action: Action) {

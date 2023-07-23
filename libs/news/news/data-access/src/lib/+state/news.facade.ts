@@ -1,16 +1,25 @@
-import {Injectable, inject} from '@angular/core';
+import {Injectable, inject, DestroyRef} from '@angular/core';
 import {select, Store, Action} from '@ngrx/store';
 
 import * as NewsActions from './news.actions';
 import * as NewsFeature from './news.reducer';
 import * as NewsSelectors from './news.selectors';
 import {NewsItemVM} from "../../../../feature-news-list/src/lib/news-item/news-item.vm";
-import {map} from "rxjs";
+import {map, Observable, Subscription} from "rxjs";
+import {selectCurrentPage} from "./news.selectors";
+import {LoadingStatus, NewsEntity} from "@core/data-access";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Injectable()
 export class NewsFacade {
   private readonly store = inject(Store);
   public readonly loaded$ = this.store.pipe(select(NewsSelectors.selectNewsStatus));
+  public readonly selectedNews$: Observable<NewsEntity | undefined> = this.store.pipe(select(NewsSelectors.selectEntity));
+  public readonly status$: Observable<LoadingStatus> = this.store.pipe(select(NewsSelectors.selectNewsStatus))
+  private readonly destroyRef = inject(DestroyRef);
+  private currentPageNumber: number = 2
+  private readonly currentPage$: Subscription = this.store.pipe(select(NewsSelectors.selectCurrentPage)).pipe(
+    takeUntilDestroyed(this.destroyRef)).subscribe(page => this.currentPageNumber + page)
   public readonly allNews$ = this.store.pipe(
     select(NewsSelectors.selectAllNews),
     map((newsItems) => {
@@ -19,8 +28,6 @@ export class NewsFacade {
         .sort((a, b) => b.publishedDate.getTime() - a.publishedDate.getTime())
     })
   );
-  public readonly selectedNews$ = this.store.pipe(select(NewsSelectors.selectEntity));
-  public readonly status$ = this.store.pipe(select(NewsSelectors.selectNewsStatus))
 
   public init() {
     this.store.dispatch(NewsActions.initNews());
@@ -29,5 +36,9 @@ export class NewsFacade {
 
   public addNewsItem(userData: NewsItemVM) {
     this.store.dispatch(NewsActions.addNewsActions.addNews(userData))
+  }
+
+  public loadNextPage() {
+    this.store.dispatch(NewsActions.loadMoreNews.loadMore({page: this.currentPageNumber++}))
   }
 }

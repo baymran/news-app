@@ -14,7 +14,7 @@ import { appRoutes } from './app.routes';
 import { provideStore, provideState } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import {NEWS_FEATURE_KEY, newsEffects, NewsFacade, newsReducer} from '@news/data-access';
+import {NEWS_FEATURE_KEY, NewsFacade, newsEffects, newsReducer} from '@news/data-access';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {

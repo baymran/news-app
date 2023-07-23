@@ -17,16 +17,16 @@ export const newsEffects = createEffect(
     return actions$.pipe(
       ofType(NewsActions.initNews),
       switchMap(
-        () => apiService.get<{ news: NewsItemDTO[], totalCount: number }>('/1/10').pipe(
+        () => apiService.get<{ news: NewsItemDTO[], totalCount: number }>('/1/5').pipe(
           map(
             ({news}) => NewsActions.loadNewsSuccess({
               news: news.map(item => newsDTOAdapter.DTOtoEntity(item))
             })
           ),
-              catchError((error) => {
-                console.error('Error', error);
-                return of(NewsActions.loadNewsFailure({error}));
-              })
+          catchError((error) => {
+            console.error('Error', error);
+            return of(NewsActions.loadNewsFailure({error}));
+          })
           )
       ),
     )
@@ -63,3 +63,26 @@ export const addFromLocalStorage = createEffect(
   },
   { functional: true }
 );
+
+export const loadMoreNewsByScroll = createEffect(
+  () => {
+    const actions$ = inject(Actions)
+    const apiService = inject(ApiService)
+    return actions$.pipe(
+      ofType(NewsActions.loadMoreNews.loadMore),
+      switchMap(({page}) =>
+        apiService.get<{ news: NewsItemDTO[] }>('/' + page + '/5/').pipe(
+          map(
+            ({news}) => NewsActions.loadMoreNews.loadMoreSuccess({
+              news: news.map(item => newsDTOAdapter.DTOtoEntity(item)),
+              page
+            })
+          ),
+          catchError((error) => {
+            console.error('Error', error);
+            return of(NewsActions.loadMoreNews.loadMoreFailure({error}));
+          })
+        ))
+    )
+  }, {functional: true}
+)
