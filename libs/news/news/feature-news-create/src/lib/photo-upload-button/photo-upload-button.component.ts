@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -23,7 +23,6 @@ export class PhotoUploadButtonComponent {
 
   public removeSelectedFile(): void {
     this.selectedFile = null;
-    // Сбрасываем значение выбранного файла и отправляем null в родительский компонент
     this.photoSelected.emit(null);
   }
 }

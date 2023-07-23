@@ -19,7 +19,7 @@ export const addNewsActions = createActionGroup({
   source: 'News/Page',
   events: {
     'Add News': props<NewsItemVM>(),
-    'Add News Success': props<{newsData: NewsEntity}>,
-    'Add News Failure': props<{error: Error}>
+    'Add News Success': props<NewsEntity>(),
+    'Add News Failure': props<{error: Error}>()
   }
 })

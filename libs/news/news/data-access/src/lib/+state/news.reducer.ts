@@ -35,7 +35,10 @@ const reducer = createReducer(
   on(NewsActions.loadNewsSuccess, (state, {news}) =>
     newsAdapter.setAll(news, {...state, status: 'loaded' as const})
   ),
-  on(NewsActions.loadNewsFailure, (state, { error }) => ({ ...state, error }))
+  on(NewsActions.loadNewsFailure, (state, { error }) => ({ ...state, error })),
+  on(NewsActions.addNewsActions.addNewsSuccess, (state, newEntity) =>
+  newsAdapter.addOne(newEntity, {...state})
+  )
 );
 
 export function newsReducer(state: NewsState | undefined, action: Action) {
