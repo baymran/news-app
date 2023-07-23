@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, HostListener, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {NewsListComponent} from "../news-list/news-list.component";
 import {NewsListContainerStore} from "./news-list-container.store";

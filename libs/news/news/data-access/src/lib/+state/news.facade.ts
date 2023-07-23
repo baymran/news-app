@@ -2,11 +2,9 @@ import {Injectable, inject, DestroyRef} from '@angular/core';
 import {select, Store, Action} from '@ngrx/store';
 
 import * as NewsActions from './news.actions';
-import * as NewsFeature from './news.reducer';
 import * as NewsSelectors from './news.selectors';
 import {NewsItemVM} from "../../../../feature-news-list/src/lib/news-item/news-item.vm";
 import {map, Observable, Subscription} from "rxjs";
-import {selectCurrentPage} from "./news.selectors";
 import {LoadingStatus, NewsEntity} from "@core/data-access";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
@@ -34,8 +32,8 @@ export class NewsFacade {
     this.store.dispatch(NewsActions.localStorageNews.getItemsFromLocalStorage())
   }
 
-  public addNewsItem(userData: NewsItemVM) {
-    this.store.dispatch(NewsActions.addNewsActions.addNews(userData))
+  public addNewsItem(newsItem: NewsItemVM) {
+    this.store.dispatch(NewsActions.addNewsActions.addNews(newsItem))
   }
 
   public loadNextPage() {

@@ -1,9 +1,9 @@
-import {Injectable, inject} from '@angular/core';
+import {inject} from '@angular/core';
 import {createEffect, Actions, ofType} from '@ngrx/effects';
 import {switchMap, catchError, of, map, tap} from 'rxjs';
 import * as NewsActions from './news.actions';
 import {ApiService} from "@core/http";
-import {newsDTOAdapter, NewsEntity, NewsItemDTO} from "@core/data-access";
+import {newsDTOAdapter, NewsItemDTO} from "@core/data-access";
 import {newsVMAdapter} from "@news/feature-news-list";
 import {getNewsKeysFromLocalStorage, getObjectsWithKeys} from "@core/utils";
 
@@ -39,7 +39,7 @@ export const addNewsItem = createEffect(
     const apiService = inject(ApiService);
     return actions$.pipe(
       ofType(NewsActions.addNewsActions.addNews),
-      tap(userData => localStorage.setItem(userData.id.toString(), JSON.stringify(userData))),
+      tap(newsItem => localStorage.setItem(newsItem.id.toString(), JSON.stringify(newsItem))),
       map(newsData => NewsActions.addNewsActions.addNewsSuccess(newsVMAdapter.VMToEntity(newsData)))
     )
   }, {functional: true}

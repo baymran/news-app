@@ -17,12 +17,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #C4C4C4; /* Серый цвет */
+  background-color: #C4C4C4;
   border-radius: 8px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #6b7280; /* Цвет при наведении */
+  background-color: #6b7280;
 }
 
 /* Firefox */
@@ -31,29 +31,27 @@ body {
 }
 
 ::-moz-scrollbar-thumb {
-  background-color: #C4C4C4; /* Серый цвет */
+  background-color: #C4C4C4;
   border-radius: 8px;
 }
 
 ::-moz-scrollbar-thumb:hover {
-  background-color: #6b7280; /* Цвет при наведении */
+  background-color: #6b7280;
 }
 
-/* Internet Explorer, Edge */
 ::-ms-scrollbar {
   width: 8px;
 }
 
 ::-ms-scrollbar-thumb {
-  background-color: #C4C4C4; /* Серый цвет */
+  background-color: #C4C4C4;
   border-radius: 8px;
 }
 
 ::-ms-scrollbar-thumb:hover {
-  background-color: #6b7280; /* Цвет при наведении */
+  background-color: #6b7280;
 }
 
-/* Опционально: Скрыть горизонтальный скроллбар */
 ::-webkit-scrollbar-horizontal {
   display: none;
 }

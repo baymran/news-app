@@ -1,8 +1,8 @@
 import {ComponentStore} from "@ngrx/component-store";
 import {inject, Injectable} from "@angular/core";
-import {LoadingStatus, NewsEntity} from "@core/data-access";
+import {NewsEntity} from "@core/data-access";
 import {DeepReadonly} from "@core/utils";
-import {NewsFacade, selectCurrentPage} from "@news/data-access";
+import {NewsFacade} from "@news/data-access";
 import {tap} from "rxjs";
 import {newsVMAdapter} from "@news/feature-news-list";
 import {NewsListVM} from "../news-list/news-list-view-model";

@@ -11,7 +11,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment.development';
 import { API_URL } from '@core/http';
 import { appRoutes } from './app.routes';
-import { provideStore, provideState } from '@ngrx/store';
+import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import {NEWS_FEATURE_KEY, NewsFacade, newsEffects, newsReducer} from '@news/data-access';

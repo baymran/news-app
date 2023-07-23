@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, HostListener, Input, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, HostListener, Input, Output} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {NewsListVM} from "./news-list-view-model";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
