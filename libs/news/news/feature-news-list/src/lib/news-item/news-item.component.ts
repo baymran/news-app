@@ -15,4 +15,9 @@ import {MatCardModule} from "@angular/material/card";
 export class NewsItemComponent {
   @Input({required: true})
   newsItem!: NewsItemVM
+
+  public formatDate(date: Date | string): string {
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(date).toLocaleDateString('ru-RU', options);
+  }
 }

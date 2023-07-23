@@ -11,3 +11,57 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #C4C4C4; /* Серый цвет */
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #6b7280; /* Цвет при наведении */
+}
+
+/* Firefox */
+::-moz-scrollbar {
+  width: 8px;
+}
+
+::-moz-scrollbar-thumb {
+  background-color: #C4C4C4; /* Серый цвет */
+  border-radius: 8px;
+}
+
+::-moz-scrollbar-thumb:hover {
+  background-color: #6b7280; /* Цвет при наведении */
+}
+
+/* Internet Explorer, Edge */
+::-ms-scrollbar {
+  width: 8px;
+}
+
+::-ms-scrollbar-thumb {
+  background-color: #C4C4C4; /* Серый цвет */
+  border-radius: 8px;
+}
+
+::-ms-scrollbar-thumb:hover {
+  background-color: #6b7280; /* Цвет при наведении */
+}
+
+/* Опционально: Скрыть горизонтальный скроллбар */
+::-webkit-scrollbar-horizontal {
+  display: none;
+}
+
+::-moz-scrollbar-horizontal {
+  display: none;
+}
+
+::-ms-scrollbar-horizontal {
+  display: none;
+}
