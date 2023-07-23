@@ -16,6 +16,7 @@ import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import {NEWS_FEATURE_KEY, NewsFacade, newsEffects, newsReducer} from '@news/data-access';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideRouterStore } from '@ngrx/router-store';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -32,13 +33,14 @@ export const appConfig: ApplicationConfig = {
         provide: API_URL,
         useValue: environment.api_url,
     },
+    provideAnimations(),
+    provideRouterStore(),
     provideStoreDevtools({
         maxAge: 25,
         logOnly: !isDevMode(),
         autoPause: true,
         trace: false,
         traceLimit: 75, // maximum stack trace frames to be stored (in case trace option was provided as true)
-    }),
-    provideAnimations()
+    })
 ],
 };

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import {NewsListComponent} from "../news-list/news-list.component";
 import {NewsListContainerStore} from "./news-list-container.store";
 import {LetDirective, PushPipe} from "@ngrx/component";
-import {CreateNewsButtonComponent} from "@news-app/news/news/feature-news-create";
+import {CreateNewsButtonComponent} from "@news/feature-news-create";
 
 @Component({
   selector: 'news-list-container',

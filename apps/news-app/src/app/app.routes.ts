@@ -9,5 +9,9 @@ export const appRoutes: Route[] = [
   {
     path: 'home',
     loadComponent: () => import('@news/home').then(c => c.HomeComponent)
+  },
+  {
+    path: 'detail/:slug',
+    loadComponent: () => import('@news/feature-news-detail').then(c => c.NewsDetailContainerComponent)
   }
 ];

@@ -19,8 +19,11 @@
       "@core/http": ["libs/core/http/src/index.ts"],
       "@core/ui/layout": ["libs/news/core/ui/layout/src/index.ts"],
       "@core/utils": ["libs/core/utils/src/index.ts"],
-      "@news-app/news/news/feature-news-create": [
+      "@news/feature-news-create": [
         "libs/news/news/feature-news-create/src/index.ts"
+      ],
+      "@news/feature-news-detail": [
+        "libs/news/news/feature-news-detail/src/index.ts"
       ],
       "@news/data-access": ["libs/news/news/data-access/src/index.ts"],
       "@news/feature-news-list": [
