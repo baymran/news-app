@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { NEWS_FEATURE_KEY, NewsState, newsAdapter } from './news.reducer';
+import {selectRouteParams} from "@core/data-access";
 
 // Lookup the 'News' feature state managed by NgRx
 export const selectNewsState =
@@ -41,4 +42,10 @@ export const selectEntity = createSelector(
 export const selectCurrentPage = createSelector(
   selectNewsState,
   ({page}) => page
+)
+
+export const selectOpenedNewsItem = createSelector(
+  selectRouteParams,
+  selectNewsEntities,
+  ({id}, entities) => entities[id] || null
 )

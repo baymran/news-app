@@ -15,14 +15,17 @@ export class NewsFacade {
   public readonly selectedNews$: Observable<NewsEntity | undefined> = this.store.pipe(select(NewsSelectors.selectEntity));
   public readonly status$: Observable<LoadingStatus> = this.store.pipe(select(NewsSelectors.selectNewsStatus))
   private readonly destroyRef = inject(DestroyRef);
-  private currentPageNumber: number = 2
+  public readonly openedNewsItem$ = this.store.select(NewsSelectors.selectOpenedNewsItem);
+
+  private currentPageNumber: number = 2 // потом вынесу
   private readonly currentPage$: Subscription = this.store.pipe(select(NewsSelectors.selectCurrentPage)).pipe(
     takeUntilDestroyed(this.destroyRef)).subscribe(page => this.currentPageNumber + page)
+
   public readonly allNews$ = this.store.pipe(
     select(NewsSelectors.selectAllNews),
     map((newsItems) => {
       return newsItems
-        .map((news) => ({ ...news, publishedDate: new Date(news.publishedDate.toString())}))
+        .map((news) => ({...news, publishedDate: new Date(news.publishedDate.toString())}))
         .sort((a, b) => b.publishedDate.getTime() - a.publishedDate.getTime())
     })
   );
