@@ -4,6 +4,7 @@ import { createReducer, on, Action } from '@ngrx/store';
 import * as NewsActions from './news.actions';
 import {LoadingStatus, NewsEntity} from "@core/data-access";
 import {NewsErrors} from "../../../../feature-news-list/src/lib/news-list/news-list-view-model";
+import {removeLeadingSlash} from "@core/utils";
 
 export const NEWS_FEATURE_KEY = 'news';
 
@@ -52,7 +53,8 @@ const reducer = createReducer(
   })),
   on(NewsActions.loadNewsItem.loadNewsItemSuccess, (state, {entity}) => {
     const updatedState = {...state, status: 'loaded' as const}
-    return newsAdapter.updateOne({id: entity.id, changes: entity}, updatedState)
+    const newEntity = {...entity, url: removeLeadingSlash(entity.url)}
+    return newsAdapter.updateOne({id: entity.id, changes: newEntity}, updatedState)
   }
 ));
 

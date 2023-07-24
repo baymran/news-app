@@ -45,4 +45,8 @@ export class NewsListContainerStore extends ComponentStore<NewsListState> {
   public loadMoreNewsByScroll() {
     this.newsFacade.loadNextPage()
   }
+
+  public fetchItemDetails(slug: string) {
+    this.newsFacade.fetchNewsItem(slug)
+  }
 }

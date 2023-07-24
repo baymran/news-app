@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {NewsItemVM} from "./news-item.vm";
 import {MatCardModule} from "@angular/material/card";
@@ -15,5 +15,6 @@ import {formatDate} from "@core/utils";
 })
 export class NewsItemComponent {
   @Input({required: true}) newsItem!: NewsItemVM
+  @Output() readMoreClicked = new EventEmitter<string>()
   protected readonly formatDate = formatDate;
 }

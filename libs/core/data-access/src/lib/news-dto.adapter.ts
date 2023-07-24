@@ -1,7 +1,7 @@
 import {NewsEntity, NewsItemDTO} from "@core/data-access";
 
 type NewsDtoAdapter = {
-  DTOtoEntity(dto: NewsEntity): NewsEntity,
+  DTOtoEntity(dto: NewsItemDTO): NewsEntity,
   entityToDTO(entity: NewsEntity): NewsItemDTO
 }
 

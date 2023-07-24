@@ -7,16 +7,15 @@ type newsVMAdapter = {
 }
 
 export const newsVMAdapter: newsVMAdapter = {
-  entityToVM({ id, title, description, publishedDate, titleImageUrl }) {
+  entityToVM({ id, title, description, publishedDate, titleImageUrl, url }) {
     return { id, title, description, publishedDate,
-      titleImageUrl
+      titleImageUrl, url
     }
   },
   VMToEntity(vmItem: NewsItemVM): NewsEntity {
     return {
       ...vmItem,
-      url: '',
-      categoryType: ''
+      categoryType: '',
     }
   }
 }

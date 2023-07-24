@@ -15,7 +15,7 @@ export class NewsFacade {
   public readonly selectedNews$: Observable<NewsEntity | undefined> = this.store.pipe(select(NewsSelectors.selectEntity));
   public readonly status$: Observable<LoadingStatus> = this.store.pipe(select(NewsSelectors.selectNewsStatus))
   private readonly destroyRef = inject(DestroyRef);
-  public readonly openedNewsItem$ = this.store.select(NewsSelectors.selectOpenedNewsItem);
+  public readonly openedNewsItem$ = this.store.pipe(select(NewsSelectors.selectOpenedNewsItem));
 
   private currentPageNumber: number = 2 // потом вынесу
   private readonly currentPage$: Subscription = this.store.pipe(select(NewsSelectors.selectCurrentPage)).pipe(
@@ -41,5 +41,9 @@ export class NewsFacade {
 
   public loadNextPage() {
     this.store.dispatch(NewsActions.loadMoreNews.loadMore({page: this.currentPageNumber++}))
+  }
+
+  public fetchNewsItem(slug: string) {
+    this.store.dispatch(NewsActions.loadNewsItem.loadNewsItem({slug}))
   }
 }

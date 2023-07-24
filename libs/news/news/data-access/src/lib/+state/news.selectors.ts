@@ -47,5 +47,11 @@ export const selectCurrentPage = createSelector(
 export const selectOpenedNewsItem = createSelector(
   selectRouteParams,
   selectNewsEntities,
-  ({id}, entities) => entities[id] || null
+  ({category, slug}, entities) => {
+    const url = `${category}/${slug}`
+    if(!entities) {
+      return null
+    }
+    return Object.values(entities).find(entity => entity!.url === url)
+  }
 )

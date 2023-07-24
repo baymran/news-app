@@ -4,6 +4,7 @@ import {NewsListComponent} from "../news-list/news-list.component";
 import {NewsListContainerStore} from "./news-list-container.store";
 import {LetDirective, PushPipe} from "@ngrx/component";
 import {CreateNewsButtonComponent} from "@news/feature-news-create";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'news-list-container',
@@ -18,8 +19,15 @@ export class NewsListContainerComponent {
   private readonly componentStore = inject(NewsListContainerStore);
   public readonly news$ = this.componentStore.news$;
   public readonly status$ = this.componentStore.status$;
+  private readonly router = inject(Router)
 
   public updatePageCounter() {
     this.componentStore.loadMoreNewsByScroll()
+  }
+
+  public getDetailsFromApi(slug: string) {
+    this.componentStore.fetchItemDetails(slug)
+    const url = slug.split('/')
+    this.router.navigate(['/detail', ...url])
   }
 }

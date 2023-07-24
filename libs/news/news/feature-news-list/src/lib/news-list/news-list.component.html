@@ -7,7 +7,7 @@
     <div class="max-w-4xl mx-auto">
       <div class="grid gap-8">
         <ng-container *ngFor="let item of vm.news">
-          <news-item [newsItem]="item" />
+          <news-item (readMoreClicked)="itemReadMore.emit($event)" [newsItem]="item" />
         </ng-container>
       </div>
     </div>

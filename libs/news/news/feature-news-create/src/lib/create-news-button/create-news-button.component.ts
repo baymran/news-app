@@ -42,6 +42,7 @@ export class CreateNewsButtonComponent {
             description: result.description,
             publishedDate: new Date(Date.now()),
             titleImageUrl: result.titleImageUrl,
+            url: 'dummy_slug' + result.title + result.id
           };
           console.log(newPostData)
           this.newsFacade.addNewsItem(newPostData)
