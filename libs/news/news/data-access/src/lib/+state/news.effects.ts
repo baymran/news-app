@@ -1,9 +1,9 @@
 import {inject} from '@angular/core';
 import {createEffect, Actions, ofType} from '@ngrx/effects';
-import {switchMap, catchError, of, map, tap} from 'rxjs';
+import {switchMap, catchError, of, map, tap, mergeMap} from 'rxjs';
 import * as NewsActions from './news.actions';
 import {ApiService} from "@core/http";
-import {newsDTOAdapter, NewsItemDTO} from "@core/data-access";
+import {newsDTOAdapter, NewsItemDetailDTO, NewsItemDTO} from "@core/data-access";
 import {newsVMAdapter} from "@news/feature-news-list";
 import {getNewsKeysFromLocalStorage, getObjectsWithKeys} from "@core/utils";
 
@@ -81,6 +81,22 @@ export const loadMoreNewsByScroll = createEffect(
             console.error('Error', error);
             return of(NewsActions.loadMoreNews.loadMoreFailure({error}));
           })
+        ))
+    )
+  }, {functional: true}
+)
+
+export const loadNewsItem = createEffect(
+  () => {
+    const actions$ = inject(Actions)
+    const apiService = inject(ApiService)
+    return actions$.pipe(
+      ofType(NewsActions.loadNewsItem.loadNewsItem),
+      mergeMap(({slug}) =>
+        apiService.get<NewsItemDetailDTO>(`/item/${slug}`).pipe(
+          map(item => newsDTOAdapter.DTOtoEntity(item)),
+          map(entity => NewsActions.loadNewsItem.loadNewsItemSuccess({entity})),
+          catchError(error => of(NewsActions.loadNewsItem.loadNewsItemFailure({error})))
         ))
     )
   }, {functional: true}

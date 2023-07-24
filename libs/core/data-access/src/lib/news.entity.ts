@@ -1,3 +1,3 @@
 import {NewsItemDTO} from "./news-dto.model";
 
-export type NewsEntity = Omit<NewsItemDTO, 'fullUrl'>
+export type NewsEntity = Omit<NewsItemDTO, 'fullUrl'> & {text?: string}

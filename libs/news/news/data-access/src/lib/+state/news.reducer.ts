@@ -45,8 +45,16 @@ const reducer = createReducer(
     newsAdapter.addMany(news, state)
   ),
   on(NewsActions.loadMoreNews.loadMoreSuccess, (state, {news, page}) =>
-  newsAdapter.addMany(news, {...state, status: 'loaded' as const, page}))
-);
+  newsAdapter.addMany(news, {...state, status: 'loaded' as const, page})),
+  on(NewsActions.loadNewsItem.loadNewsItem, (state) => ({
+    ...state,
+    status: 'loading' as const
+  })),
+  on(NewsActions.loadNewsItem.loadNewsItemSuccess, (state, {entity}) => {
+    const updatedState = {...state, status: 'loaded' as const}
+    return newsAdapter.updateOne({id: entity.id, changes: entity}, updatedState)
+  }
+));
 
 export function newsReducer(state: NewsState | undefined, action: Action) {
   return reducer(state, action);

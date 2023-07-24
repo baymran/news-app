@@ -41,3 +41,12 @@ export const loadMoreNews = createActionGroup({
     'Load More Failure': props<{ error: any }>()
   }
 })
+
+export const loadNewsItem = createActionGroup({
+  source: 'News/Detail',
+  events: {
+    'Load News Item': props<{slug: string}>(),
+    'Load News Item Success': props<{entity: NewsEntity}>(),
+    'Load News Item Failure': props<{error: any}>()
+  }
+})
