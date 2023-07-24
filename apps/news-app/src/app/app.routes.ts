@@ -11,7 +11,9 @@ export const appRoutes: Route[] = [
     loadComponent: () => import('@news/home').then(c => c.HomeComponent)
   },
   {
-    path: 'detail/:slug',
-    loadComponent: () => import('@news/feature-news-detail').then(c => c.NewsDetailContainerComponent)
-  }
+    path: 'detail/:category/:slug',
+    loadComponent: () => import('@news/feature-news-detail').then(c => c.NewsDetailContainerComponent),
+    pathMatch: 'full'
+  },
+
 ];

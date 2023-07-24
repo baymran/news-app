@@ -16,17 +16,18 @@ import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import {NEWS_FEATURE_KEY, NewsFacade, newsEffects, newsReducer} from '@news/data-access';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { provideRouterStore } from '@ngrx/router-store';
+import {provideRouterStore, routerReducer} from '@ngrx/router-store';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideEffects(newsEffects),
-    // provideState(fromNews.NEWS_FEATURE_KEY, fromNews.newsReducer),
     NewsFacade,
     provideStore({
-        [NEWS_FEATURE_KEY]: newsReducer
+      [NEWS_FEATURE_KEY]: newsReducer,
+      router: routerReducer
     }),
     provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
+    provideRouterStore(),
     provideHttpClient(),
     importProvidersFrom(NewsFacade),
     {
@@ -34,7 +35,6 @@ export const appConfig: ApplicationConfig = {
         useValue: environment.api_url,
     },
     provideAnimations(),
-    provideRouterStore(),
     provideStoreDevtools({
         maxAge: 25,
         logOnly: !isDevMode(),
