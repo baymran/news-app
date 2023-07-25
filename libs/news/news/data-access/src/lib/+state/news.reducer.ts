@@ -52,9 +52,14 @@ const reducer = createReducer(
     status: 'loading' as const
   })),
   on(NewsActions.loadNewsItem.loadNewsItemSuccess, (state, {entity}) => {
+    const existingEntity = state.entities[entity.id]
     const updatedState = {...state, status: 'loaded' as const}
     const newEntity = {...entity, url: removeLeadingSlash(entity.url)}
-    return newsAdapter.updateOne({id: entity.id, changes: newEntity}, updatedState)
+    if (existingEntity) {
+      return newsAdapter.updateOne({id: entity.id, changes: newEntity}, updatedState)
+    } else {
+      return newsAdapter.addOne(newEntity, { ...updatedState });
+    }
   }
 ));
 
